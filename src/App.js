@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation  } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
@@ -17,15 +17,25 @@ import { ColorModeContext, useMode } from "./theme";
 import Calendar from "./scenes/calendar/calendar";
 import Login from './components/Login/login';
 import useToken from './components/App/useToken';
+import Register from './components/Register/register';
 
 
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
   const { token, setToken } = useToken();
+  const location = useLocation();
+
+  if (!token && location.pathname === '/register') {
+    return <Register />
+  } 
   
   if(!token) {
-    return <Login setToken={setToken} />
+    return (
+      <ColorModeContext.Provider value={colorMode}>
+        <Login setToken={setToken} />
+      </ColorModeContext.Provider>
+    )
   }
  
   return (
