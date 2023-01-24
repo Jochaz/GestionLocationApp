@@ -27,15 +27,27 @@ function App() {
   const location = useLocation();
 
   if (!token && location.pathname === '/register') {
-    return <Register />
+    return (<Register />)
   } 
   
   if(!token) {
+    /*return (
+      <div className="app">
+        <Login setToken={setToken} />
+      </div>
+    )*/
     return (
       <ColorModeContext.Provider value={colorMode}>
-        <Login setToken={setToken} />
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className="app">
+            <main className="content">
+            <Login setToken={setToken} />
+            </main>
+          </div>
+        </ThemeProvider>
       </ColorModeContext.Provider>
-    )
+    );
   }
  
   return (
