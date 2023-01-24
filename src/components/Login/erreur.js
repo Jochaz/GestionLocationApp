@@ -1,3 +1,4 @@
+import { Box } from '@mui/system';
 import React from 'react';
 
 function ErreurLogin({props}) {
@@ -7,8 +8,8 @@ function ErreurLogin({props}) {
 
     //Affichage
     return(
-        <div>
-            {props.erreur}
+        <div className='erreurLogin'>
+            <Box sx={{paddingTop: "10px"}}>{props.erreur}</Box>
         </div>
     )
 }

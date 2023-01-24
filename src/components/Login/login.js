@@ -6,7 +6,7 @@ import { Box, Button, TextField } from "@mui/material";
 import ErreurLogin from './erreur';
 
 async function loginUser(credentials) {
- return fetch('http://localhost:3000/login', {
+ return fetch('http://localhost:4001/login', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json',
@@ -19,8 +19,11 @@ async function loginUser(credentials) {
       if (data.ok) {
         return (data.json()) 
       } else {
-        alert(data.text)
-      }
+          return data.json()
+          .then(function(err) {
+            return err
+          });
+      } 
     })
 }
 
@@ -38,7 +41,11 @@ export default function Login({ setToken }) {
       password
     });
 
-    setToken(token);
+    if (token.token){
+      setToken(token);
+    } else {
+      setErreur(token.erreur)
+    }
   }
 
   return(
@@ -77,7 +84,7 @@ export default function Login({ setToken }) {
             Se connecter
           </Button>             
         </Box>
-
+        <ErreurLogin props={{erreur}}/>
         <p class="register">Mot de passe oublié ? <a href="/resetpassword">Cliquez ici !</a></p> 
         <p class="register">Pas encore de compte ? <a href="/register">Inscrivez-vous ici !</a></p> 
       </form> 

@@ -18,7 +18,7 @@ import Calendar from "./scenes/calendar/calendar";
 import Login from './components/Login/login';
 import useToken from './components/App/useToken';
 import Register from './components/Register/register';
-
+import ExplicationApplication from "./components/Login/explicationapp";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -31,18 +31,21 @@ function App() {
   } 
   
   if(!token) {
-    /*return (
-      <div className="app">
-        <Login setToken={setToken} />
-      </div>
-    )*/
     return (
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+        
           <div className="app">
             <main className="content">
-            <Login setToken={setToken} />
+              <div className="wrapper">
+                <div>
+                  <ExplicationApplication />
+                </div>
+                <div>
+                  <Login setToken={setToken} />
+                </div>
+              </div>
             </main>
           </div>
         </ThemeProvider>
