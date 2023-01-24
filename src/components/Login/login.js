@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { Box, Button, TextField } from "@mui/material";
+import ErreurLogin from './erreur';
 
 async function loginUser(credentials) {
  return fetch('http://localhost:3000/login', {
@@ -14,13 +15,20 @@ async function loginUser(credentials) {
    
    body: JSON.stringify(credentials)
  })
-   .then( data => (data.json()) /* data.json()*/ )
+   .then( data => {
+      if (data.ok) {
+        return (data.json()) 
+      } else {
+        alert(data.text)
+      }
+    })
 }
 
 
 export default function Login({ setToken }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [erreur, setErreur] = useState();
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const handleSubmit = async e => {
@@ -69,6 +77,7 @@ export default function Login({ setToken }) {
             Se connecter
           </Button>             
         </Box>
+
         <p class="register">Mot de passe oublié ? <a href="/resetpassword">Cliquez ici !</a></p> 
         <p class="register">Pas encore de compte ? <a href="/register">Inscrivez-vous ici !</a></p> 
       </form> 
