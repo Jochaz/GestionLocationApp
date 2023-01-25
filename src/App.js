@@ -26,6 +26,24 @@ function App() {
   const { token, setToken } = useToken();
   const location = useLocation();
 
+  function getUser() {
+    return fetch('http://localhost:4001/users?id=' + token, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': 'APIGestionLocation123'
+      },
+    })
+      .then(response => 
+          response.json().then(data => ({
+            data: data,
+          }))
+        ).then(res => {
+          console.log(res.data.doc.mode_theme);
+          colorMode.setColorMode(res.data.doc.mode_theme)    
+        })
+   }
+   
   if (!token && location.pathname === '/register') {
     return (<Register />)
   } 
@@ -52,6 +70,8 @@ function App() {
       </ColorModeContext.Provider>
     );
   }
+
+  getUser();
  
   return (
     <ColorModeContext.Provider value={colorMode}>

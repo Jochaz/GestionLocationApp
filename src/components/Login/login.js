@@ -85,8 +85,8 @@ export default function Login({ setToken }) {
           </Button>             
         </Box>
         <ErreurLogin props={{erreur}}/>
-        <p class="register">Mot de passe oublié ? <a href="/resetpassword">Cliquez ici !</a></p> 
-        <p class="register">Pas encore de compte ? <a href="/register">Inscrivez-vous ici !</a></p> 
+        <p className="register">Mot de passe oublié ? <a href="/resetpassword">Cliquez ici !</a></p> 
+        <p className="register">Pas encore de compte ? <a href="/register">Inscrivez-vous ici !</a></p> 
       </form> 
     </div>
   )
