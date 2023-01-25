@@ -54,7 +54,7 @@ body,
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  background: linear-gradient(110deg, #f39c12 60%,  #f1c40f 60%);
+  background: linear-gradient(110deg, #c8ad7f 60%,  #ece1cf 60%);
   padding-bottom: 30px;
 }
 
