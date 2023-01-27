@@ -28,6 +28,25 @@ async function loginUser(credentials) {
 }
 
 
+function setThemeUser(colorMode, token) {
+  return fetch('http://localhost:4001/users?id=' + token, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': 'APIGestionLocation123'
+    },
+  })
+    .then(response => 
+        response.json().then(data => ({
+          data: data,
+        }))
+      ).then(res => {
+        console.log(colorMode);
+        colorMode.setColorMode(res.data.doc.mode_theme)    
+      })
+ }
+
+
 export default function Login({ setToken }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();

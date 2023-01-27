@@ -13,7 +13,7 @@ import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 
-const Dashboard = () => {
+const Dashboard = ({user}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -21,7 +21,7 @@ const Dashboard = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header title="TABLEAU DE BORD" subtitle="Bienvenue sur votre tableau de bord" />
 
         <Box>
           <Button
@@ -56,9 +56,7 @@ const Dashboard = () => {
         >
           <StatBox
             title="12,361"
-            subtitle="Emails Sent"
-            progress="0.75"
-            increase="+14%"
+            subtitle={user}
             icon={
               <EmailIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}

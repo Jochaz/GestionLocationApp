@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route, useLocation  } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
@@ -26,24 +26,6 @@ function App() {
   const { token, setToken } = useToken();
   const location = useLocation();
 
-  function getUser() {
-    return fetch('http://localhost:4001/users?id=' + token, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'authorization': 'APIGestionLocation123'
-      },
-    })
-      .then(response => 
-          response.json().then(data => ({
-            data: data,
-          }))
-        ).then(res => {
-          console.log(res.data.doc.mode_theme);
-          colorMode.setColorMode(res.data.doc.mode_theme)    
-        })
-   }
-   
   if (!token && location.pathname === '/register') {
     return (<Register />)
   } 
@@ -61,7 +43,7 @@ function App() {
                   <ExplicationApplication />
                 </div>
                 <div>
-                  <Login setToken={setToken} />
+                  <Login setToken={setToken}/>
                 </div>
               </div>
             </main>
@@ -71,33 +53,31 @@ function App() {
     );
   }
 
-  getUser();
- 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div className="app">
-          <Sidebar isSidebar={isSidebar} />
-          <main className="content">
-            <Topbar setIsSidebar={setIsSidebar} />
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/contacts" element={<Contacts />} />
-              <Route path="/invoices" element={<Invoices />} />
-              <Route path="/form" element={<Form />} />
-              <Route path="/bar" element={<Bar />} />
-              <Route path="/pie" element={<Pie />} />
-              <Route path="/line" element={<Line />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/calendar" element={<Calendar />} />
-              <Route path="/geography" element={<Geography />} />
-            </Routes>
-          </main>
-        </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className="app">
+            <Sidebar isSidebar={isSidebar} />
+            <main className="content">
+              <Topbar setIsSidebar={setIsSidebar} />
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/team" element={<Team />} />
+                <Route path="/contacts" element={<Contacts />} />
+                <Route path="/invoices" element={<Invoices />} />
+                <Route path="/form" element={<Form />} />
+                <Route path="/bar" element={<Bar />} />
+                <Route path="/pie" element={<Pie />} />
+                <Route path="/line" element={<Line />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/geography" element={<Geography />} />
+              </Routes>
+            </main>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
   );
 }
 
