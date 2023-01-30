@@ -432,167 +432,59 @@ export const mockPieData = [
 
 export const mockLineData = [
   {
-    id: "japan",
+    id: "Loyer",
     color: tokens("dark").greenAccent[500],
     data: [
       {
-        x: "plane",
-        y: 101,
+        x: "Janvier",
+        y: 2500,
       },
       {
-        x: "helicopter",
-        y: 75,
+        x: "Février",
+        y: 1500,
       },
       {
-        x: "boat",
-        y: 36,
+        x: "Mars",
+        y: 1600,
       },
       {
-        x: "train",
-        y: 216,
+        x: "Avril",
+        y: 1700,
       },
       {
-        x: "subway",
+        x: "Mai",
         y: 35,
       },
       {
-        x: "bus",
+        x: "Juin",
         y: 236,
       },
       {
-        x: "car",
+        x: "Juillet",
         y: 88,
       },
       {
-        x: "moto",
+        x: "Août",
         y: 232,
       },
       {
-        x: "bicycle",
+        x: "Septembre",
         y: 281,
       },
       {
-        x: "horse",
+        x: "Octobre",
         y: 1,
       },
       {
-        x: "skateboard",
+        x: "Novembre",
         y: 35,
       },
       {
-        x: "others",
+        x: "Décembre",
         y: 14,
       },
     ],
-  },
-  {
-    id: "france",
-    color: tokens("dark").blueAccent[300],
-    data: [
-      {
-        x: "plane",
-        y: 212,
-      },
-      {
-        x: "helicopter",
-        y: 190,
-      },
-      {
-        x: "boat",
-        y: 270,
-      },
-      {
-        x: "train",
-        y: 9,
-      },
-      {
-        x: "subway",
-        y: 75,
-      },
-      {
-        x: "bus",
-        y: 175,
-      },
-      {
-        x: "car",
-        y: 33,
-      },
-      {
-        x: "moto",
-        y: 189,
-      },
-      {
-        x: "bicycle",
-        y: 97,
-      },
-      {
-        x: "horse",
-        y: 87,
-      },
-      {
-        x: "skateboard",
-        y: 299,
-      },
-      {
-        x: "others",
-        y: 251,
-      },
-    ],
-  },
-  {
-    id: "us",
-    color: tokens("dark").redAccent[200],
-    data: [
-      {
-        x: "plane",
-        y: 191,
-      },
-      {
-        x: "helicopter",
-        y: 136,
-      },
-      {
-        x: "boat",
-        y: 91,
-      },
-      {
-        x: "train",
-        y: 190,
-      },
-      {
-        x: "subway",
-        y: 211,
-      },
-      {
-        x: "bus",
-        y: 152,
-      },
-      {
-        x: "car",
-        y: 189,
-      },
-      {
-        x: "moto",
-        y: 152,
-      },
-      {
-        x: "bicycle",
-        y: 8,
-      },
-      {
-        x: "horse",
-        y: 197,
-      },
-      {
-        x: "skateboard",
-        y: 107,
-      },
-      {
-        x: "others",
-        y: 170,
-      },
-    ],
-  },
+  }
 ];
 
 export const mockGeographyData = [

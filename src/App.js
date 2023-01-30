@@ -24,18 +24,19 @@ function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
   const { token, setToken } = useToken();
-  const location = useLocation();
+  const { user, setUser } = useToken();
 
+  const location = useLocation();
   if (!token && location.pathname === '/register') {
     return (<Register />)
-  } 
-  
-  if(!token) {
+  }
+
+  else if(!token) {
     return (
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-        
+
           <div className="app">
             <main className="content">
               <div className="wrapper">
@@ -43,7 +44,7 @@ function App() {
                   <ExplicationApplication />
                 </div>
                 <div>
-                  <Login setToken={setToken}/>
+                  <Login setToken={setToken} setUser={setUser}/>
                 </div>
               </div>
             </main>
@@ -58,15 +59,15 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <div className="app">
-            <Sidebar isSidebar={isSidebar} />
+            <Sidebar isSidebar={isSidebar} user={user} />
             <main className="content">
               <Topbar setIsSidebar={setIsSidebar} />
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<Dashboard user={user} />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/contacts" element={<Contacts />} />
                 <Route path="/invoices" element={<Invoices />} />
-                <Route path="/form" element={<Form />} />
+                <Route path="/form" element={<Form user={user} />} />
                 <Route path="/bar" element={<Bar />} />
                 <Route path="/pie" element={<Pie />} />
                 <Route path="/line" element={<Line />} />
@@ -80,5 +81,6 @@ function App() {
       </ColorModeContext.Provider>
   );
 }
+
 
 export default App;
