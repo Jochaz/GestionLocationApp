@@ -53,6 +53,11 @@ body,
   font-weight: bold;
 }
 
+.validForm {
+  color:#5db411;
+  font-weight: bold;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

@@ -3,10 +3,13 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import { useState } from "react";
+import ValidForm from "./valid";
 
 const Form = (props) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const user = JSON.parse(props.user);
+  const [confirm, setConfirm] = useState();
 
   const handleFormSubmit = (values) => {
     user.telephoneport = values.contact;
@@ -16,8 +19,21 @@ const Form = (props) => {
     user.adresseLigne3 = values.address3;
     user.CP            = values.CP;
     user.ville         = values.ville;
-
-    console.log(user);
+    
+    fetch('http://localhost:4001/users', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': 'APIGestionLocation123'
+    },   
+    body: JSON.stringify(user)
+    })
+    .then((response) => {
+      response.json().then((data) => {
+        console.log(data.message)
+        setConfirm(data.message);
+      })
+    })
   };
 
   if (!user){
@@ -38,7 +54,7 @@ const Form = (props) => {
   };
   return (
     <Box m="20px">
-      <Header title="MON PROFIL" subtitle="Create a New User Profile" />
+      <Header title="MON PROFIL" subtitle="Modifier vos informations" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -197,11 +213,14 @@ const Form = (props) => {
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
+            
               <Button type="submit" color="secondary" variant="contained">
                 Sauvegarder le profil
               </Button>
             </Box>
+            <ValidForm props={{confirm}}/>
           </form>
+          
         )}
       </Formik>
     </Box>

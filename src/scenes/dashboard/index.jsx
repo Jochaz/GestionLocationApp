@@ -1,7 +1,5 @@
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-import { mockTransactions } from "../../data/mockData";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Header from "../../components/Header";
@@ -9,9 +7,9 @@ import LineChart from "../../components/LineChart";
 import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
-import ProgressCircle from "../../components/ProgressCircle";
 import FactBox from "../../components/FactBox";
 import WalletIcon from '@mui/icons-material/Wallet';
+
 
 function getNombreLocataire(user) {
 
@@ -32,7 +30,14 @@ function getRevenueGenereeAnnee(user) {
 const Dashboard = (props) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const user = JSON.parse(props.user);
+
+  let user = null; 
+  if (typeof props.user == "object") {
+    user = props.user.user;
+  } else {
+    user = JSON.parse(props.user).user;
+  }
+ 
 
   if (!user){
     return
