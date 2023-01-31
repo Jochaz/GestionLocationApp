@@ -1,15 +1,27 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, IconButton, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ValidForm from "./valid";
+import { PhotoCamera } from "@mui/icons-material";
 
 const Form = (props) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const user = JSON.parse(props.user);
+  let user = null; 
+  if (typeof props.user == "object") {
+    user = props.user.user;
+  } else {
+    user = JSON.parse(props.user).user;
+  }
   const [confirm, setConfirm] = useState();
+  const [fileInput, setFileInput] = useState(null)
+
+  const handleFileInput = (e) => {
+      // handle validations
+      setFileInput(e.target.files[0])
+  }
 
   const handleFormSubmit = (values) => {
     user.telephoneport = values.contact;
@@ -19,6 +31,8 @@ const Form = (props) => {
     user.adresseLigne3 = values.address3;
     user.CP            = values.CP;
     user.ville         = values.ville;
+
+    console.log(values.picture)
     
     fetch('http://localhost:4001/users', {
     method: 'PUT',
@@ -30,7 +44,11 @@ const Form = (props) => {
     })
     .then((response) => {
       response.json().then((data) => {
-        console.log(data.message)
+        
+        // if (fileInput){
+        //   const test = URL.createObjectURL(fileInput)
+        // }
+        
         setConfirm(data.message);
       })
     })
@@ -50,6 +68,7 @@ const Form = (props) => {
     address3: user.adresseLigne3,
     CP: user.CP,
     ville: user.ville,
+    picture: ''
   
   };
   return (
@@ -70,6 +89,12 @@ const Form = (props) => {
           handleSubmit,
         }) => (
           <form onSubmit={handleSubmit}>
+            {/* <Box m={"5px"}>
+              <IconButton color="primary" aria-label="upload picture" component="label">
+                <PhotoCamera sx={"margin-right:10px"}/>
+                <input accept="image/*png" type="file" onChange={handleFileInput} name="avatar" />
+              </IconButton>
+            </Box> */}
             <Box
               display="grid"
               gap="30px"
