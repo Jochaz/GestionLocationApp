@@ -48,9 +48,10 @@ body,
   background: #555;
 }
 
-.erreurLogin {
+.erreurLogin, .erreurForm {
   color:#c0392b;
   font-weight: bold;
+  white-space: pre-line;
 }
 
 .validForm {
@@ -75,4 +76,8 @@ body,
 .logoApp {
   display: flex;
   align-items:center;
+}
+
+.AddButton {
+  zoom: 150%;
 }

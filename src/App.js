@@ -3,7 +3,6 @@ import { Routes, Route, useLocation  } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
-import Team from "./scenes/team";
 import Invoices from "./scenes/invoices";
 import Contacts from "./scenes/contacts";
 import Bar from "./scenes/bar";
@@ -19,6 +18,9 @@ import Login from './components/Login/login';
 import useToken from './components/App/useToken';
 import Register from './components/Register/register';
 import ExplicationApplication from "./components/Login/explicationapp";
+import Bien from "./scenes/biens";
+import Addbien from "./scenes/biens/addbien";
+
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -64,7 +66,8 @@ function App() {
               <Topbar setIsSidebar={setIsSidebar} />
               <Routes>
                 <Route path="/" element={<Dashboard user={user} />} />
-                <Route path="/team" element={<Team />} />
+                <Route path="/bien" element={<Bien user={user} />} />
+                <Route path="/addbien" element={<Addbien user={user} />} />
                 <Route path="/contacts" element={<Contacts />} />
                 <Route path="/invoices" element={<Invoices />} />
                 <Route path="/form" element={<Form user={user} />} />

@@ -147,7 +147,7 @@ const Sidebar = (props) => {
             </Typography>
             <Item
               title="Vos biens"
-              to="/team"
+              to="/bien"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

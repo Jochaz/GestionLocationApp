@@ -1,11 +1,11 @@
-import { Box, Button, IconButton, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import ValidForm from "./valid";
-import { PhotoCamera } from "@mui/icons-material";
+
 
 const Form = (props) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -16,12 +16,6 @@ const Form = (props) => {
     user = JSON.parse(props.user).user;
   }
   const [confirm, setConfirm] = useState();
-  const [fileInput, setFileInput] = useState(null)
-
-  const handleFileInput = (e) => {
-      // handle validations
-      setFileInput(e.target.files[0])
-  }
 
   const handleFormSubmit = (values) => {
     user.telephoneport = values.contact;
